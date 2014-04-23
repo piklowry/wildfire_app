@@ -1,0 +1,224 @@
+def self.search(search)
+  if search
+    Wildfire.includes(:locations).where(:locations => {:city => "%#{search}%"}).all
+  else
+    find(:all)
+  end
+ end
+end
+
+
+class Wildfire < ActiveRecord::Base
+
+  has_many :locations
+
+  def self.search(search)
+    Wildfire.joins("locations.wildfire_id like ? OR locations.state like ? OR locations.city like ? OR area_burned like ? OR description like ?",  "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+  end
+end
+
+
+class Wildfire < ActiveRecord::Base
+
+  has_many :locations
+
+  def self.search(search)
+    Wildfire.joins("INNER JOIN locations ON wildfire.id = locations.wildfire_id")
+  end
+end
+
+def self.search(search)
+  if search
+    Wildfire.joins(:locations).where("locations.city LIKE ?' => %#{search}%")
+  else
+    find(:all)
+  end
+ end
+end
+
+def self.search(search)
+  if search
+    Wildfire.joins(:locations).where(:conditions => {'name LIKE ?' => "%#{search}%"}).all
+  else
+    find(:all)
+  end
+ end
+end
+
+def self.search(search)
+  if search
+    Wildfire.joins(:locations).where(:conditions => {'city LIKE ?' => "%#{search}%"}).all
+  else
+    find(:all)
+  end
+ end
+end
+
+def self.search(search)
+  if search
+    Location.joins(:wildfires).where(:conditions => {'city LIKE ?' => "%#{search}%"}).all
+  else
+    find(:all)
+  end
+ end
+end
+
+
+def self.search_two(search)
+  if search
+    Wildfire.includes(:locations).where(:locations => {:city => "%#{search}%"}).all
+  else
+    find(:all)
+  end
+ end
+end
+
+
+
+
+def self.search_two(search)
+  if search
+    Wildfire.includes(:locations).where(:locations => {:city => "%#{search}%"}).all
+  else
+    find(:all)
+  end
+ end
+end
+
+
+Wildfire.joins(:locations).where(:conditions => {:city = "%#{search}%"})
+
+Wildfire.joins(:locations).where(:conditions => {:city = "Tampa"})
+
+
+
+
+def self.search(search)
+  if search
+    Wildfire.includes(:locations).where(:locations => {:city => "%#{search}%"}).all
+  else
+    find(:all)
+  end
+ end
+end
+
+
+
+
+
+
+
+def self.search(search)
+  if search
+    Wildfire.find(:locations).where(:locations => {:city => "%#{search}%"}).all
+  else
+    find(:all)
+  end
+ end
+end
+
+def self.search(search)
+  if search
+    Wildfire.includes(:locations).where(:locations => {:city => "%#{search}%"}).all
+  else
+    find(:all)
+  end
+ end
+end
+
+Wildfire.includes(:locations).where(:locations => {:city => "%#{search}%"}).
+
+
+def self.search(search)
+  if search
+  	@new_fire = Wildfire.find(params[:search])
+    @new_fire = Wildfire.joins(:locations).where(:wildfires => {:city = "%#{search}%"})
+    puts params
+  else
+    @new_fire = Wildfire.all
+  end
+ end
+end
+
+def self.search(search)
+  if search
+  	@new_fire = Wildfire.find(params[:search])
+    @new_fire = Wildfire.joins(:locations).where(:wildfires => {:city = "%#{search}%"})
+    puts params
+  else
+    @new_fire = Wildfire.all
+  end
+ end
+end
+
+Wildfire.joins(:locations).
+where(:wildfires => {:conditions = "tampa"})
+
+def self.search(search)
+  if search
+  	Wildfire.includes(:locations).where(:locations => {:city => "%#{search}%"}).all
+    find(:all.:conditions => ['name LIKE ?', "%#{search}%"])
+  else
+    find(:all)
+  end
+ end
+end
+
+def self.search(search)
+  if search
+    find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+  else
+    find(:all)
+  end
+ end
+end
+
+def self.search(search)
+  if search
+    find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+  else
+    find(:all)
+  end
+ end
+end
+
+
+Wildfire.joins(:locations).
+where(:wildfires => {:city = "tampa"})
+
+Wildfire.joins(:locations).
+where(:wildfires => {:city = "%#{search}%"})
+
+
+# def self.search(search)
+#   if params[:search]
+#   	@new_search = Wildfire.joins(:locations)
+# 			puts @new_search
+#   elsif params[:search] 
+#     search = find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+#   else
+#     @wildfires = Wildfire.all
+#   end
+#  end
+# end
+
+# def self.search(search)
+#   if params[:search]
+#   	@wildfire = Wildfire.search(params[:search])
+#   elsif params[:search] 
+#     search = find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+#   else
+#     @wildfires = Wildfire.all
+#   end
+#  end
+# end
+
+
+"SELECT 'wildfires'.* FROM 'wildfires' INNER JOIN 'locations' ON 'locations'.wildfire_id' = 'wildfires'.'id' WHERE 'wildfires'.'name'='Forest Fire'"
+
+
+"SELECT 'locations'.* FROM 'locations' INNER JOIN 'wildfires' ON 'wildfires'.wildfire_id' = 'locations'.'id' WHERE 'locations'.'name'='Tampe'"
+
+
+
+

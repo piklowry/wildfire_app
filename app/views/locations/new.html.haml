@@ -1,0 +1,17 @@
+= form_for @new_location do |f|
+	= f.label :city
+	= f.text_field :city
+
+	= f.label :state
+	= f.text_field :state
+
+	= f.label :State
+	= f.select :wildfire_id, Location.all.collect {|d| [d.city, d.id ]}
+
+	= f.label :Name
+	= f.select :wildfire_id, Wildfire.all.collect {|d| [d.name, d.id ]}
+
+	= f.label :Date
+	= f.select :wildfire_id, Wildfire.all.collect {|d| [d.happened, d.id ]}
+
+	= f.submit

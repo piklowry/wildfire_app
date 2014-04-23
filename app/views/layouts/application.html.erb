@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>Store Two Demo</title>
+		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+
+ 
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <img class="" src="http://www.hillslist.info/resources/Garage-Sale-(300).png" alt="" />
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Wild Fire APP!</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li> <a href="/wildfires">ALL WILDFIRES</a></li>
+            <li> <a href="/locations">ALL LOCATIONS</a></li>
+            <li> <a href="/wildfires/new">NEW WILD FIRE</a></li>
+            <li> <a href="/locations/new">NEW LOCATIONS</a></li>
+           
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	<!-- +++++ Welcome Section +++++ -->
+	<%= yield %>
+	
+	
+	
+			
+			</div>
+		
+		</div>
+	</div>
+
+  </body>
+</html>
