@@ -11,3 +11,128 @@
  *= require_self
  *= require_tree .
  */
+
+ul.rig {
+	list-style: none;
+	font-size: 0px;
+	margin-left: -2.5%; /* should match li left margin */
+}
+h1 {
+	width:700px;
+	height:250px;
+	float-right:300px;
+	padding: 50px;
+	margin: 0 0 2.5% 2.5%;
+	background: #eee;
+	border: 1px solid #ddd;
+	font-size: 8px;
+	font-size: 1rem;
+	vertical-align: top;
+	box-shadow: 0 0 5px #ddd;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+h3 {
+float-right:500px;
+text-align:center;
+
+
+}
+
+img {
+	border-color:hidden;
+	float:right;
+	height: 200px;
+	width:300px;
+	overflow:hidden;
+	margin-top:-150px;
+}
+ul.rig li h3 {
+	margin: 0 0 5px;
+	font-size:14px;
+}
+ul.rig li p {
+	font-size: .9em;
+	line-height: 1.5em;
+	color: #999;
+}
+/* class for 2 columns */
+ul.rig.columns-2 li {
+	width: 47.5%; /* this value + 2.5 should = 50% */
+}
+/* class for 3 columns */
+ul.rig.columns-3 li {
+	width: 30.83%; /* this value + 2.5 should = 33% */
+}
+/* class for 4 columns */
+ul.rig.columns-4 li{ 
+	width: 120px;
+	height:250px; /* this value + 2.5 should = 25% */
+}
+ 
+@media (max-width: 900px) {
+	ul.grid-nav li {
+		display: block;
+		margin: 0 0 5px;
+	}
+	ul.grid-nav li a {
+		display: block;
+	}
+	ul.rig {
+		margin-left: 0;
+	}
+	ul.rig li {
+		width: 100% !important; /* over-ride all li styles */
+		margin: 0 0 20px;
+	}
+
+
+
+.content_wrapper {
+    width: 900px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:5%;
+    margin-left: 5%;
+    text-align: center;
+}
+
+.wrap {
+width:750px;
+margin:0 auto;
+background:#99c;
+}
+
+.main {
+margin-left:500px;
+width:500px;
+background:#eee;
+}
+.searchbar {
+margin-left:800px;
+text-align-right:11px;
+
+}
+
+.sidebar {
+float:right;
+width:250px;
+background:#c9c;
+}
+
+.formbox {
+width:300px;
+background:#eee;
+height:350px;
+
+}
+
+.containertwo {
+width:600px;
+height:350px;
+margin-left:800px;
+
+}

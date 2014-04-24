@@ -29,16 +29,29 @@ class WildfiresController < ApplicationController
 		redirect_to wildfires_path
 	end
 
+	# def search
+	# 	# @search_results = Wildfire.joins(:locations).where(:conditions => {'name LIKE ?' => "%#{search}%"}).all
+	# 	@search_results = Wildfire.search(params[:search])
+	# 	render results_wildfires_path
+ #  end
+
+ #get "/doctors/search"
 	def search
-	  @search_results = Wildfire.search(params[:search])
-		render results_wildfires_path
+		
+		@wildfires = Wildfire.search(params[:search])
+		# render search_wildfires_path
   end
- 
+
 
 	def results
 		@search_results
 	end
 
+	def download_fire_zone
+		@location = Location.find(params[:id])
+		file = @location.fire_zone_path
+		send_file file.path
+	end
 
 
 	private

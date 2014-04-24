@@ -1,0 +1,43 @@
+.container
+	.container
+		.searchbar
+			%br
+			= form_tag search_wildfires_path, method: "get" do
+				= label_tag "Search By Name"
+				= text_field_tag 'search[name]'
+				= select_tag 'search[acres_burned]', options_for_select(Wildfire.pluck(:acres_burned)), include_blank: true
+				= submit_tag "SEARCH"
+
+%h3 All the wildfires
+
+- @wildfires.each do |d|
+	%li
+		%p
+		Name:
+		= d.name
+		%br
+		Date it Occured:
+		= d.happened
+		%br
+		Where there Deaths?
+		= d.death_toll
+		- d.acres_burned
+		%br
+		ID
+		= d.id
+		%br
+		= link_to "Change to Yes Everything Been Repaired", change_death_toll_wildfire_path(d), method: "patch"
+
+		- d.locations.each do |l|
+			%br
+			City:
+			= l.city
+			%br
+			State:
+			= l.state
+			/ = link_to "Download Photo", download_fire_zone_location_path
+			/ %img
+			/ 	= image_tag @location.fire_zone.url
+
+		
+	

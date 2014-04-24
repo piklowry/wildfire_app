@@ -1,11 +1,32 @@
-%h1 All the locations
+.container
+	.container
+		.searchbar
+			%br
+			= form_tag search_wildfires_path, method: "get" do
+				= label_tag "Search By Name"
+				= text_field_tag 'search[name]'
+				= select_tag 'search[acres_burned]', options_for_select(Wildfire.pluck(:acres_burned)), include_blank: true
+				= submit_tag "SEARCH"
+
+
+%h3 All the locations
 
 - @locations.each do |d|
-	Name:
-	= d.city
-	%br
-	city:
-	= d.state
-	%br
-
+	%h1
+		%li
+			%p
+				City:
+				= d.city
+				%br
+				State:
+				= d.state
+				%br
+				Wild Fire ID:
+				= d.wildfire_id
+				= d.id
+				%img
+					= image_tag d.fire_zone.url
+				
+	
+%br
 

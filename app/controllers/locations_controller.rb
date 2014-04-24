@@ -15,6 +15,17 @@ class LocationsController < ApplicationController
 	end
 end
 
+	
+	def show
+		@location = Location.find(params[:id])
+	end
+
+	def download_fire_zone
+		@location = Location.find(params[:id])
+		file = @location.fire_zone
+		send_file file.path
+	end
+
 	private
 
 	def location_params

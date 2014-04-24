@@ -1,18 +1,20 @@
-= form_for @new_fire, url: wildfires_path do |f|
-	= f.label :name
-	= f.text_field :name
-	%br
-	= f.label :happened
-	= f.text_field :happened
-	%br
-	= f.label :acres_burned
-	= f.text_field :acres_burned
-	%br
-	%l Fatalities?
-	= f.label "Yes"
-	= f.radio_button :death_toll, "yes"
-	= f.label "No"
-	= f.radio_button :death_toll, "no"
+%h1
+	= form_for @new_fire, url: wildfires_path do |f|
+		%p
+			= f.label :name
+			= f.text_field :name
+			%br
+			= f.label :happened
+			= f.text_field :happened
+			%br
+			= f.label :acres_burned
+			= f.text_field :acres_burned
+			%br
+			%l Fatalities?
+			= f.label "Yes"
+			= f.radio_button :death_toll, "yes"
+			= f.label "No"
+			= f.radio_button :death_toll, "no"
 
-	%br
-	= f.submit
+			%br
+			= f.submit

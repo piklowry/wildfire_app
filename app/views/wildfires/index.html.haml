@@ -1,24 +1,46 @@
-= form_tag search_wildfires_path, :method => 'get' do
-	= text_field_tag :search, params[:search]
-	= submit_tag "Search", :name => nil
+.container
+	.container
+		.searchbar
+			%br
+			= form_tag search_wildfires_path, method: "get" do
+				= label_tag "Search By Name"
+				= text_field_tag 'search[name]'
+				= select_tag 'search[acres_burned]', options_for_select(Wildfire.pluck(:acres_burned)), include_blank: true
+				= submit_tag "SEARCH"
+				
 
-%h1 All the wildfires
+
+/ = form_tag search_wildfires_path, :method => 'get' do
+/ 	= text_field_tag :search, params[:search]
+/ 	= submit_tag "Search", :name => nil
+
+%h3 Wildfires List
+= button_to "add wildfire", new_wildfire_path, method: "get"
 
 - @wildfires.each do |d|
-	Name:
-	= d.name
-	%br
-	Date it Occured:
-	= d.happened
-	%br
-	Where there Deaths?
-	= d.death_toll
-	%br
-	%br
-	= link_to "Has Everything Been Repaired", change_death_toll_wildfire_path(d), method: "patch"
-	%br
-	%br
+	%h1
+		%p
+			Name:
+			= d.name
+			%br
+			Date it Occured:
+			= d.happened
+			%br
+			Has Everything Been Repaired?
+			= d.death_toll
+			%br
+			Acres Burned?
+			= d.acres_burned
+			%br
+			ID
+			= d.id
+			%br
+			= link_to "Change to Yes Everything Been Repaired", change_death_toll_wildfire_path(d), method: "patch"
+			%br
+			%br
 
 
-= button_to "add wildfire", new_wildfire_path, method: "get"
+
 	
+
+		

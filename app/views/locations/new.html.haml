@@ -1,3 +1,15 @@
+.container
+	.container
+		.searchbar
+			%br
+			= form_tag search_wildfires_path, method: "get" do
+				= label_tag "Search By Name"
+				= text_field_tag 'search[name]'
+				= select_tag 'search[acres_burned]', options_for_select(Wildfire.pluck(:acres_burned)), include_blank: true
+				= submit_tag "SEARCH"
+				%br
+				%br
+
 = form_for @new_location do |f|
 	= f.label :city
 	= f.text_field :city
@@ -5,13 +17,18 @@
 	= f.label :state
 	= f.text_field :state
 
-	= f.label :State
-	= f.select :wildfire_id, Location.all.collect {|d| [d.city, d.id ]}
-
-	= f.label :Name
-	= f.select :wildfire_id, Wildfire.all.collect {|d| [d.name, d.id ]}
-
+	= f.label :id_number
+	= f.number_field :wildfire_id
+	= f.file_field :fire_zone
+	- f.hidden_field :fire_zone
 	= f.label :Date
 	= f.select :wildfire_id, Wildfire.all.collect {|d| [d.happened, d.id ]}
-
 	= f.submit
+
+	/ = f.label :State
+	/ = f.select :wildfire_id, Location.all.collect {|d| [d.city, d.id ]}
+
+	/ = f.label :Name
+	/ = f.select :wildfire_id, Wildfire.all.collect {|d| [d.name, d.id ]}
+
+	

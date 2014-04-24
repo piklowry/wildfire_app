@@ -8,6 +8,7 @@ WildfireApp::Application.routes.draw do
     get :search 
     end
 
+
     member do 
       patch :change_death_toll
     end
@@ -16,15 +17,21 @@ WildfireApp::Application.routes.draw do
       collection do
       get :results
       get :search
+      get :download_fire_zone
+    end
+
+
     end
   end
 
 
-  end
-
- resources :locations
-
   
+
+ resources :locations do
+      member do 
+      get :download_fire_zone
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

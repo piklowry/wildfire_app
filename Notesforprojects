@@ -1,6 +1,17 @@
+Location.where("wildfire_id = 13")
+
 def self.search(search)
   if search
     Wildfire.includes(:locations).where(:locations => {:city => "%#{search}%"}).all
+  else
+    find(:all)
+  end
+ end
+end
+
+def self.search(search)
+  if search
+    Location.where("wildfire_id = 13")
   else
     find(:all)
   end
@@ -13,7 +24,7 @@ class Wildfire < ActiveRecord::Base
   has_many :locations
 
   def self.search(search)
-    Wildfire.joins("locations.wildfire_id like ? OR locations.state like ? OR locations.city like ? OR area_burned like ? OR description like ?",  "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+    Wildfire.joins.(:locations).where("locations.wildfire_id like ? OR locations.state like ? OR locations.city like ? OR area_burned like ? OR description like ?",  "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
   end
 end
 
@@ -218,6 +229,75 @@ where(:wildfires => {:city = "%#{search}%"})
 
 
 "SELECT 'locations'.* FROM 'locations' INNER JOIN 'wildfires' ON 'wildfires'.wildfire_id' = 'locations'.'id' WHERE 'locations'.'name'='Tampe'"
+
+
+class Wildfire < ActiveRecord::Base
+    has_many :locations
+
+
+  # def self.search(search)
+ #  if search
+ #    find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+ #  else
+ #    find(:all)
+ #  end
+ # end
+
+ ##scopes ##
+  # scope :bigwildfires -> { where(acres_burned: "Big Wild Fire")}
+  scope :casualties, -> {where(death_toll: false )  }
+  # scope :with_acres_burned, -> (acres_burned) { where('acres_burned = ?', acres_burned)}
+
+
+  def self.with_acres_burned(acres_burned)
+    # if acres_burned.blank? - i could do logic in here if i want
+    where('locations.acres_burned LIKE ?', acres_burned)
+  end
+
+  def self.search(params)
+    # debugger
+    name = params[:name]
+    acres_burned = params[:acres_burned]
+
+
+    search = Wildfire.all
+
+
+    # if acres_burned.present?
+  #     search = search.with_acres_burned(acres_burned)
+  #   end
+
+    if acres_burned.present?
+      search = search.joins(:locations).where('locations.state LIKE ?',"%#{name}%")
+    end
+
+    if name.present?
+      # search = search.where('name LIKE ?', "%#{name}%")
+      search = search.joins(:locations).where('locations.city LIKE ?', "%#{name}%")
+    end
+
+    # if name.present?
+  #     search = search.find_by_sql("SELECT * FROM wildfires
+    #   INNER JOIN locations ON wildfires.id = locations.wildfires_id
+    #   ORDER BY wildfires.created_at desc")
+    # end
+
+    # if name.present?
+  #     search = search.find_by_sql("SELECT * FROM locations
+    #   INNER JOIN wildfires ON locations.wildfires_id = wildfires.id
+    #   ORDER BY wildfires.created_at desc")
+    # end
+ 
+
+
+
+    search
+  end
+
+
+
+end
+
 
 
 

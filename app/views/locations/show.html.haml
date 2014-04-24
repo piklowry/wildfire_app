@@ -1,0 +1,20 @@
+%h1
+	%li
+		%p
+			City:
+			= @location.city
+			%br
+			State:
+			= @location.state
+			%br
+			Wild Fire ID:
+			= @location.wildfire_id
+			= @location.id
+			%br
+			= link_to "Download Photo", download_fire_zone_location_path
+			%img
+				= image_tag @location.fire_zone.url
+				
+
+/ = link_to "location", @download_fire_zone_path
+/ = image_tag @location.fire_zone.url
